@@ -1,0 +1,23 @@
+body {
+  background-color: #f8f9fc;
+  color: #1a1a1a;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: linear-gradient(90deg, #4c4ddc, #7df9ff);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
