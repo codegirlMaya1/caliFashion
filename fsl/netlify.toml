@@ -1,7 +1,7 @@
 [build]
   base = "fsl"
   command = "npm run build"
-  publish = "fsl/dist"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22.21.0"
