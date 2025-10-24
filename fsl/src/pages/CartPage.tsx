@@ -67,6 +67,11 @@ const CartPage: React.FC = () => {
                   ${item.price.toFixed(2)} × {item.quantity}
                 </p>
 
+                <p style={{ color: '#4c4ddc', fontWeight: 'bold', marginTop: '0.5rem' }}>
+  ⭐️⭐️⭐️ You successfully added Product ID: {item.id} ⭐️⭐️⭐️
+</p>
+                
+                
                 <div
                   className="d-flex justify-content-center align-items-center mb-3"
                   style={{ gap: "0.75rem" }}
@@ -120,27 +125,28 @@ const CartPage: React.FC = () => {
         <button className="btn btn-secondary me-2" onClick={clearCart}>
           Clear Bag
         </button>
-        <button
-          className="btn"
-          style={{
-            backgroundColor: "#4c4ddc",
-            color: "white",
-            fontWeight: 600,
-            border: "none",
-            borderRadius: "8px",
-            padding: "0.6rem 1.4rem",
-            boxShadow: "0 0 10px rgba(76, 77, 220, 0.6)",
-            transition: "all 0.3s ease-in-out",
-          }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.boxShadow = "0 0 18px rgba(76, 77, 220, 0.9)")
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.boxShadow = "0 0 10px rgba(76, 77, 220, 0.6)")
-          }
-        >
-          Checkout
-        </button>
+       <button
+  className="btn"
+  style={{
+    backgroundColor: "#4c4ddc",
+    color: "white",
+    fontWeight: 600,
+    border: "none",
+    borderRadius: "8px",
+    padding: "0.6rem 1.4rem",
+    boxShadow: "0 0 10px rgba(76, 77, 220, 0.6)",
+    transition: "all 0.3s ease-in-out",
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.boxShadow = "0 0 18px rgba(76, 77, 220, 0.9)";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.boxShadow = "0 0 10px rgba(76, 77, 220, 0.6)";
+  }}
+  onClick={() => navigate("/destination")}
+>
+  Checkout
+</button>
       </div>
     </div>
   );

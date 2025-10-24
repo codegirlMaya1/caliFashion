@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
       const greetOnce = async () => {
         setHasGreeted(true);
         await speak(
-          "Hi, I'm Samuel your virtual shopping assistant. You can say electronics, jewelry, men's clothing, or women's clothing to begin."
+          "Hi, I'm Shiela Shopper your virtual shopping assistant. You can say electronics, jewelry, men's clothing, or women's clothing to begin."
         );
         startListening();
       };
@@ -42,12 +42,13 @@ const HomePage: React.FC = () => {
     } else if (match(["jewelry", "jewelery"])) {
       setHasNavigated(true);
       navigate("/category/jewelery");
-    } else if (match(["men", "men's clothing"])) {
-      setHasNavigated(true);
-      navigate("/category/men's%20clothing");
-    } else if (match(["women", "women's clothing"])) {
+       } else if (match(["women", "wo", "women's", "woman", "female", "lady,"])) {
       setHasNavigated(true);
       navigate("/category/women's%20clothing");
+    } else if (match(["men", "men's, man, male"])) {
+      setHasNavigated(true);
+      navigate("/category/men's%20clothing");
+   
     }
   }, [transcript, hasNavigated, navigate]);
 

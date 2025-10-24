@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CategoryPage from "./pages/CategoryPage";
 import CartPage from "./pages/CartPage";
+import DestinationPage from "./pages/Destination"; // adjust path if needed
 import Header from "./components/Header";
 import { CartProvider } from "./context/CartContext";
 import useVoice from "./hooks/useVoice";
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/category/:category" element={<CategoryPage />} />
+          <Route path="/destination" element={<DestinationPage />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
 
