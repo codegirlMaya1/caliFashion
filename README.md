@@ -18,4 +18,5 @@ Open a terminal and navigate to the fsl/backend directory. Start the Flask backe
 Open a second terminal window and return to the fsl directory. Start the React development server by running the command npm run dev. This will launch the frontend on your local machine, typically accessible at http://localhost:5173.
 
 
-With both the backend and frontend servers running, you can interact with the CaliFashion application in your browser. The voice assistant will guide you through browsing products, adding items to your cart, and completing purchases. This setup ensures a smooth development experience for working with both components of the application.
+With both the backend and frontend servers running, you can interact with the CaliFashion application in your browser. The voice assistant will guide you through browsing products, adding items to your cart, and completing purchases. This setup ensures a smooth development experience for working with both components of the application. 
+
