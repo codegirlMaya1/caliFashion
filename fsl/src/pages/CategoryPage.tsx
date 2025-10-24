@@ -4,6 +4,7 @@ import { useCart } from "../context/CartContext";
 import type { CartItem } from "../context/CartContext";
 import useVoice from "../hooks/useVoice";
 import ProductCard from "../components/ProductCard";
+import addSound from "../assets/add.wav"; // Ensure this path is correct
 
 interface Product {
   id: number;
@@ -24,6 +25,11 @@ const CategoryPage: React.FC = () => {
   const [hasSpoken, setHasSpoken] = useState(false);
   const [hasAdded, setHasAdded] = useState(false);
 
+  // Reset greeting when category changes
+  useEffect(() => {
+    setHasSpoken(false);
+  }, [category]);
+
   // Fetch products from FakeStoreAPI
   useEffect(() => {
     const fetchProducts = async () => {
@@ -41,14 +47,19 @@ const CategoryPage: React.FC = () => {
     fetchProducts();
   }, [category]);
 
-  // Initial voice greeting
+  // Initial voice greeting with 5-second pause
   useEffect(() => {
     if (!hasSpoken && products.length > 0) {
-      speak(`You're now viewing ${category}. Say the product ID to add it to your cart.`);
-      startListening();
+      const greetUser = async () => {
+        await speak(`You're now viewing ${category}. Please say a product ID number to add it to your bag.`);
+        setTimeout(() => {
+          startListening();
+        }, 5000); // 5-second pause before listening
+      };
+      greetUser();
       setHasSpoken(true);
     }
-  }, [hasSpoken, products]);
+  }, [hasSpoken, products, category, speak, startListening]);
 
   // Voice command handler
   useEffect(() => {
@@ -71,15 +82,23 @@ const CategoryPage: React.FC = () => {
       addToCart(itemToAdd);
       setHasAdded(true);
       stopListening();
-      speak(`${matchedProduct.title} has been added to your cart.`);
 
+      // Play sound once
+      const audio = new Audio(addSound);
+      audio.play();
+
+      // Wait for sound to finish and then speak
       setTimeout(() => {
-        speak(
-          "Would you like to shop another item, say home or homepage to return to the category page, or check out?"
-        );
-        setHasAdded(false);
-        startListening();
-      }, 3000);
+        speak(`${matchedProduct.title} has been added to your cart.`);
+
+        setTimeout(() => {
+          speak(
+            "You can add another item, say home to return to the category page, or say checkout if you're done here."
+          );
+          setHasAdded(false);
+          startListening();
+        }, 5000); // 5-second pause after confirmation
+      }, 5000); // 5-second pause after sound
     }
 
     if (lower.includes("shop another")) {
@@ -89,7 +108,7 @@ const CategoryPage: React.FC = () => {
     } else if (lower.includes("check out") || lower.includes("cart")) {
       navigate("/cart");
     }
-  }, [transcript, hasAdded, products, category, navigate]);
+  }, [transcript, hasAdded, products, category, navigate, addToCart, speak, startListening, stopListening]);
 
   return (
     <div style={{ padding: "2rem" }}>
